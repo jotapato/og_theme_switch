@@ -1,0 +1,55 @@
+<?php
+
+/**
+ * @file
+ * og_theme_switch install and uninstall functions for the module.
+ */
+
+/**
+ * Definition of hook_schema();
+ */
+function og_theme_switch_schema() {
+  $schema = array();
+
+  $schema['og_theme_switch'] = array(
+    'description'     => 'Og Theme Switch for a user in all groups',
+    'fields'          => array(
+      'nid'             => array(
+        'description'   => "The group's {node}.nid.",
+        'type'          => 'int',
+        'size'          => 'normal',
+        'not null'      => TRUE,
+      ),
+      'uid'             => array(
+        'description'   => 'The user.',
+        'type'          => 'int',
+        'size'          => 'normal',
+        'not null'      => TRUE,
+      ),
+      'space_theme'     => array(
+        'description'   => 'The group specific theme (if any).',
+        'type'          => 'varchar',
+        'length'        => 255,
+        'not null'      => FALSE,
+      ),
+    ),
+    'primary key'       => array('nid', 'uid'),
+  );
+
+  return $schema;
+}
+
+function og_theme_switch_install() {
+  drupal_install_schema('og_theme_switch');
+}
+
+function og_theme_switch_uninstall() {
+  $query = db_query("SELECT variable.name
+  FROM variable variable 
+  WHERE variable.name LIKE '%og_theme_switch_%'");
+  
+  while ($result = db_fetch_object($query)) {
+    variable_del($result->name);
+  }
+  drupal_uninstall_schema('og_theme_switch');
+}

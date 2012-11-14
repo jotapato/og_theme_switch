@@ -1,0 +1,5 @@
+name = Organic groups theme switch
+description = Allow to each user to change the theme for each group.
+core = 6.x
+package = Organic groups
+dependencies[] = og
