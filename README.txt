@@ -1,7 +1,7 @@
 
 -- SUMMARY --
 
-The og_changetheme module creates a block that can be activated in any region
+The og_theme_switch module creates a block that can be activated in any region
 of all the themes that will be used.
 For each group, the administrator can select which themes are going to be 
 enabled for the user.
@@ -26,11 +26,11 @@ None.
 -- CONFIGURATION --
 
 * Configure user permissions in Administer >> User management >> Permissions >>
-  changetehem module:
+  og_theme_switch module:
 
   - administer change theme
 
-    Users in roles with the "administer change theme" permission will see
+    Users in roles with the "administer theme switch" permission will see
     the administration page and can choose which themes belogn to each group.
 
   - theme switch
